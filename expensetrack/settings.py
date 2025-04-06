@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e$nd$4qq-ggkl(w@err$=$$_d2bu%f9em@814pw)kmss0fu4vn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,15 +81,16 @@ WSGI_APPLICATION = 'expensetrack.wsgi.application'
 #     }
 # }
 #expense tracker db
+import os
 DATABASES = {
-	'default': {
-	'ENGINE': 'django.db.backends.mysql',
-	'NAME': 'expenses_db',
-	'USER': 'root',
-	'PASSWORD': '',
-	'HOST': '0.0.0.0:8000',
-	'PORT': '3307',
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'expenses_db',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3307',
+    }
 }
 
 
@@ -126,12 +127,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-import os
+
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
